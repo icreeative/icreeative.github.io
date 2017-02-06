@@ -1,3 +1,21 @@
-<h1>
-  {{title}}
-</h1>
+<section class="gallery">
+    <div class="search-box-outer">
+        <div class="search-box">
+            <input type="text" placeholder="enter location" (keyup)="liveSearch($event.target.value)">
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <ng-container *ngIf="photos">
+            <div *ngFor="let photo of photos; let i = index">
+                <div *ngIf="i < 10">
+                    <figure class="photo" (click)="select(photo)" [ngClass]="{'selected' : photo.selected, 'selected' : isLocalStorage(photo)  }">
+                        <img src="{{photo.getUrl}}" alt="">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+            </div>
+            </ng-container>
+        </div>
+    </div>
+</section>
